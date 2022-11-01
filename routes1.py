@@ -81,8 +81,8 @@ def sum_page():
     else:
         val = 0
     data_set = {'value': val}
-    json_dump = json.dumps(data_set)
-    return json_dump
+    #json_dump = json.dumps(data_set)
+    return data_set
 
 
 #---------------------------------------------------------------------------------------------------------#
