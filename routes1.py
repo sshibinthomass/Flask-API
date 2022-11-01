@@ -1,12 +1,8 @@
 from flask import *
 import datetime
 import json
-import pickle
-import numpy as np
 
 app = Flask(__name__)
-app = Flask(__name__)
-model = pickle.load(open('model.pkl', 'rb'))
 
 courses = [
     {
@@ -26,9 +22,7 @@ courses = [
     }
 ]
 
-@app.route('/')
-def index():
-    return 'Hello World'
+
 # all Types
 # GET
 # http://127.0.0.1:5000/acourses
@@ -89,20 +83,6 @@ def sum_page():
     data_set = {'value': val}
     json_dump = json.dumps(data_set)
     return json_dump
-
-#http://127.0.0.1:5000/predict/?exp=4&Tscore=7&Iscore=4
-@app.route('/predict/', methods=['GET'])
-def predict():
-    exp = int(request.args.get('exp'))
-    Tscore = int(request.args.get('Tscore'))
-    Iscore = int(request.args.get('Iscore'))
-    final_features = [np.array([exp,Tscore,Iscore])]
-    prediction = model.predict(final_features)
-    output = round(prediction[0], 2)
-    data_set = {'value': output}
-    json_dump = json.dumps(data_set)
-    return json_dump
-
 
 
 #---------------------------------------------------------------------------------------------------------#
